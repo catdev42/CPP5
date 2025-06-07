@@ -1,16 +1,19 @@
 #include "Form.hpp"
 #include <iostream>
 
-Form::Form()
+Form::Form() : name("Unnamed"), gradeToSign(1), gradeToExecute(1)
 {
     std::cout << "Form default constructor" << std::endl;
     return;
 }
 
-Form::Form(Form const &src)
+Form::Form(std::string formName, int signGrade, int executeGrade) : name(formName), gradeToSign(signGrade), gradeToExecute(executeGrade)
+{
+}
+
+Form::Form(Form const &src) : name(src.name), gradeToSign(src.gradeToSign), gradeToExecute(src.gradeToExecute)
 {
     std::cout << "Form copy constructor" << std::endl;
-    /*TODO*/;
     return;
 }
 
@@ -19,7 +22,7 @@ Form &Form::operator=(Form const &rhs)
     std::cout << "Form copy assignment operator" << std::endl;
     if (this != &rhs)
     {
-      /*TODO*/;
+        /*TODO*/;
     }
     return *this;
 }
@@ -34,13 +37,26 @@ Form::~Form()
 /********************************************/
 /****** MEMBER FUNCTIONS ******/
 
+std::string Form::getName() const {}
+int Form::getGradeToSign() const {}
+int Form::getSignedStatus() const {}
+int Form::getGradeToExecute() const {}
+void Form::beSigned(Bureaucrat &b) {}
+
 /********************************************/
 /********************************************/
 /****** STREAM ******/
 
 std::ostream &operator<<(std::ostream &o, const Form &infile)
 {
-    o << std::endl;
+    o << "Form " << infile.getName()
+      << " with gradeToSign = " << infile.getGradeToSign()
+      << " and gradeToExecute = " << infile.getGradeToExecute()
+      << " is ";
+    if (infile.getSignedStatus())
+        o << "signed";
+    else
+        o << "not signed";
     return o;
 }
 

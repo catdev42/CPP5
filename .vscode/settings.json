@@ -64,6 +64,11 @@
 		"functional": "cpp",
 		"iterator": "cpp",
 		"memory_resource": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"deque": "cpp",
+		"numeric": "cpp",
+		"random": "cpp",
+		"numbers": "cpp",
+		"ranges": "cpp"
 	}
 }

@@ -69,10 +69,24 @@ void Bureaucrat::signForm(Form &f)
     try
     {
         f.beSigned(*this);
+        std::cout << this->name << " signed " << f.getName() << std::endl;
     }
-    catch (exception *)
+    catch (const Form::GradeTooHighException &e) // Catch Form's GradeTooHighException
     {
-
+        std::cout << this->getName() << " couldn't sign " << f.getName()
+                  << " because its grade requirement is too high: " << e.what() << std::endl;
+    }
+    catch (const Form::GradeTooLowException &e) // Catch Form's GradeTooLowException
+    {
+        std::cout << this->getName() << " couldn't sign " << f.getName()
+                  << " because their grade is too low for the form: " << e.what() << std::endl;
+    }
+    catch (const std::exception &e) // Catch any other standard exceptions
+    {
+        // This will catch other exceptions that Form::beSigned might throw,
+        // or if Form's exceptions don't inherit from std::exception (though they should).
+        std::cout << this->getName() << " couldn't sign " << f.getName()
+                  << " due to an unexpected issue: " << e.what() << std::endl;
     }
 }
 
