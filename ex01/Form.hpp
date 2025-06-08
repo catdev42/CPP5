@@ -3,12 +3,21 @@
 
 #include <iostream>
 #include <exception>
-#include "Bureaucrat.hpp"
+
+#define RESET   "\033[0m"
+#define GREY    "\033[0;30m"
+
+class Bureaucrat;
 class Form
 {
 private:
+    enum
+    {
+        HIGHTESTGRADE = 1,
+        LOWESTGRADE = 150
+    };
     const std::string name;
-    bool signedForm = 0;
+    bool signedForm;
     const int gradeToSign;
     const int gradeToExecute;
     Form();
@@ -43,6 +52,7 @@ public:
             return ("Form::GradeTooLowException");
         }
     };
+    
 };
 
 std::ostream &operator<<(std::ostream &o, Form const &infile);

@@ -1,31 +1,20 @@
 #include <iostream>
 #include <string>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
 	Bureaucrat man("ManMax", 42);
 	std::cout << man << std::endl
 			  << std::endl;
-	try
-	{
-		Bureaucrat man2("Man2", 150);
-		std::cout << man2 << std::endl
-				  << std::endl;
-		man2.decrement();
-	}
-	catch (const Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << "Caught High Grade Exception: " << e.what() << '\n';
-	}
-	catch (const Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << "Caught Low Grade Exception: " << e.what() << '\n';
-	}
-	catch (const std::exception &e) // General catch for other std::exceptions
-	{
-		std::cerr << "Caught other std::exception: " << e.what() << '\n';
-	}
+	Form form21("Form 21", 50, 5);
+	man.signForm(form21);
 
+	Bureaucrat man2("ManJoe", 42);
+	std::cout << man2 << std::endl
+			  << std::endl;
+	Form form22("Form 22", 10, 5);
+	man2.signForm(form22);
 	return 0;
 }

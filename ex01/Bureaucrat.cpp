@@ -4,12 +4,12 @@
 
 Bureaucrat::Bureaucrat() : name("John Doe"), grade(LOWESTGRADE)
 {
-    std::cout << "Bureaucrat default constructor" << std::endl;
+    std::cout << GREY << "Bureaucrat default constructor" << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string givenName, int gradeStart) : name(givenName)
 {
-    std::cout << "Bureaucrat parametrized constructor" << std::endl;
+    std::cout << GREY << "Bureaucrat parametrized constructor" << RESET << std::endl;
     if (gradeStart < HIGHTESTGRADE)
         throw Bureaucrat::GradeTooHighException();
     if (gradeStart > LOWESTGRADE)
@@ -19,12 +19,12 @@ Bureaucrat::Bureaucrat(std::string givenName, int gradeStart) : name(givenName)
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src) : name(src.name), grade(src.grade)
 {
-    std::cout << "Bureaucrat copy constructor" << std::endl;
+    std::cout << GREY << "Bureaucrat copy constructor" << RESET << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
-    std::cout << "Bureaucrat copy assignment operator" << std::endl;
+    std::cout << GREY << "Bureaucrat copy assignment operator" << RESET << std::endl;
     if (this != &rhs)
     {
         grade = rhs.grade;
@@ -34,7 +34,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Bureaucrat destructor" << std::endl;
+    std::cout << GREY << "Bureaucrat destructor" << RESET << std::endl;
     return;
 }
 
@@ -69,22 +69,16 @@ void Bureaucrat::signForm(Form &f)
     try
     {
         f.beSigned(*this);
-        std::cout << this->name << " signed " << f.getName() << std::endl;
+        std::cout << this->name << " signed form " << f.getName() << std::endl;
     }
-    catch (const Form::GradeTooHighException &e) // Catch Form's GradeTooHighException
+    catch (const Form::GradeTooLowException &e)
     {
-        std::cout << this->getName() << " couldn't sign " << f.getName()
-                  << " because its grade requirement is too high: " << e.what() << std::endl;
+        std::cout << this->getName() << " couldn't sign form " << f.getName()
+                  << " because their grade (" << this->getGrade()
+                  << ") is too low for the form requirement (" << f.getGradeToSign() << "): " << e.what() << std::endl;
     }
-    catch (const Form::GradeTooLowException &e) // Catch Form's GradeTooLowException
+    catch (const std::exception &e)
     {
-        std::cout << this->getName() << " couldn't sign " << f.getName()
-                  << " because their grade is too low for the form: " << e.what() << std::endl;
-    }
-    catch (const std::exception &e) // Catch any other standard exceptions
-    {
-        // This will catch other exceptions that Form::beSigned might throw,
-        // or if Form's exceptions don't inherit from std::exception (though they should).
         std::cout << this->getName() << " couldn't sign " << f.getName()
                   << " due to an unexpected issue: " << e.what() << std::endl;
     }

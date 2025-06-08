@@ -2,8 +2,10 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
 
-class Form;
+#define RESET   "\033[0m"
+#define GREY    "\033[0;30m"
 
 class Bureaucrat
 {
@@ -51,6 +53,5 @@ public:
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &infile);
-
 
 #endif
