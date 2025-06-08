@@ -69,6 +69,7 @@
 		"numeric": "cpp",
 		"random": "cpp",
 		"numbers": "cpp",
-		"ranges": "cpp"
+		"ranges": "cpp",
+		"fstream": "cpp"
 	}
 }

@@ -20,11 +20,18 @@ cat > ${CLASS_NAME}.hpp << EOL
 
 #include <iostream>
 
+#ifndef COLOR
+#define COLOR
+#define GREY "\033[0;30m"
+#define RESET "\033[0m"
+#endif
+
 class ${CLASS_NAME} {
 private:
     
 public:
     ${CLASS_NAME}();
+    ${CLASS_NAME}(/*PARAM TODO*/);
     ${CLASS_NAME}(${CLASS_NAME} const &src);
     ${CLASS_NAME} &operator=(${CLASS_NAME} const &rhs);
     ~${CLASS_NAME}();
@@ -50,20 +57,28 @@ cat > ${CLASS_NAME}.cpp << EOL
 
 ${CLASS_NAME}::${CLASS_NAME}()
 {
-    std::cout << "${CLASS_NAME} default constructor" << std::endl;
+    std::cout << GREY << "${CLASS_NAME} default constructor" << RESET << std::endl;
     return;
 }
 
+${CLASS_NAME}::${CLASS_NAME}(/*PARAM TODO*/)
+{
+    std::cout << GREY << "${CLASS_NAME} parametrized constructor" << RESET << std::endl;
+    return;
+}
+
+
+
 ${CLASS_NAME}::${CLASS_NAME}(${CLASS_NAME} const &src)
 {
-    std::cout << "${CLASS_NAME} copy constructor" << std::endl;
+    std::cout << GREY << "${CLASS_NAME} copy constructor" << RESET << std::endl;
     /*TODO*/;
     return;
 }
 
 ${CLASS_NAME} &${CLASS_NAME}::operator=(${CLASS_NAME} const &rhs)
 {
-    std::cout << "${CLASS_NAME} copy assignment operator" << std::endl;
+    std::cout << GREY << "${CLASS_NAME} copy assignment operator" << RESET << std::endl;
     if (this != &rhs)
     {
       /*TODO*/;
@@ -73,7 +88,7 @@ ${CLASS_NAME} &${CLASS_NAME}::operator=(${CLASS_NAME} const &rhs)
 
 ${CLASS_NAME}::~${CLASS_NAME}()
 {
-    std::cout << "${CLASS_NAME} destructor" << std::endl;
+    std::cout << GREY << "${CLASS_NAME} destructor" << RESET << std::endl;
     return;
 }
 
@@ -87,7 +102,7 @@ ${CLASS_NAME}::~${CLASS_NAME}()
 
 std::ostream &operator<<(std::ostream &o, const ${CLASS_NAME} &infile)
 {
-    o << std::endl;
+    o << "";
     return o;
 }
 
