@@ -13,6 +13,8 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("Targetless RobotomyRequestFo
 
 RobotomyRequestForm::RobotomyRequestForm(std::string formTarget) : AForm("RobotomyRequestForm", SIGNGRADE, EXECGRADE), target(formTarget)
 {
+    std::cout << GREY << "RobotomyRequestFormparametrized constructor" << RESET << std::endl;
+    return;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src) : AForm(src.getName(), SIGNGRADE, EXECGRADE), target(src.getTarget())
@@ -70,7 +72,7 @@ std::string RobotomyRequestForm::getTarget() const
 
 std::ostream &operator<<(std::ostream &o, const RobotomyRequestForm &infile)
 {
-      o << "This form " << infile.getName()
+    o << "This form " << infile.getName()
       << " with target " << infile.getTarget()
       << ", gradeToSign = " << infile.getGradeToSign()
       << " and gradeToExecute = " << infile.getGradeToExecute()
