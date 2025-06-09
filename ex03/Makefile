@@ -6,7 +6,7 @@ SRC = main.cpp Bureaucrat.cpp AForm.cpp \
 			PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 OBJ = $(addprefix obj/, $(SRC:.cpp=.o))
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -pedantic -g
 
 NAME = play
 

@@ -18,6 +18,7 @@
 class Intern
 {
 private:
+
 public:
     Intern();
     Intern(Intern const &src);
@@ -25,7 +26,6 @@ public:
     ~Intern();
 
     AForm *makeForm(std::string formType, std::string const &formTarget) const;
-
     class NonexistentFormException : public std::exception
     {
     public:
@@ -35,7 +35,5 @@ public:
         }
     };
 };
-
-std::ostream &operator<<(std::ostream &o, Intern const &infile);
 
 #endif

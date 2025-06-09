@@ -22,7 +22,7 @@ AForm *tryMakeForm(Intern &intern, std::string formType, std::string const &form
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what();
+		std::cout << e.what() << std::endl;
 	}
 	return form;
 }
@@ -36,9 +36,8 @@ int main()
 	Intern intern;
 	std::cout << man << std::endl
 			  << std::endl;
-	// PresidentialPardonForm presForm("Dobbie");
 
-	form = tryMakeForm(intern, "presidentialpardon", "office");
+	form = tryMakeForm(intern, "presidentialpardon", "dobbie");
 	man.signAForm(*form);
 	man.executeForm(*form);
 	delete form;
@@ -54,5 +53,8 @@ int main()
 	man.executeForm(*form);
 	man.executeForm(*form);
 	man.executeForm(*form);
+
+	form = tryMakeForm(intern, "someform", "office");
+
 	return 0;
 }

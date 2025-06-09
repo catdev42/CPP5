@@ -15,7 +15,7 @@ Intern::Intern()
 Intern::Intern(Intern const &src)
 {
     std::cout << GREY << "Intern copy constructor" << RESET << std::endl;
-    /*TODO*/;
+    (void)src;
     return;
 }
 
@@ -51,8 +51,12 @@ AForm *Intern::makeForm(std::string formType, std::string const &formTarget) con
     int i = 0;
     std::string forms[] = {"shrubbery", "robotomy", "presidentialpardon"};
     makeLower(formType);
-    while (i < forms->length() && !formType.find(forms[i]))
+    int numForms = sizeof(forms) / sizeof(forms[0]);
+
+    while (i < numForms)
     {
+        if (formType.find(forms[i]) != std::string::npos)
+            break;
         i++;
     }
 
@@ -75,12 +79,6 @@ AForm *Intern::makeForm(std::string formType, std::string const &formTarget) con
 /********************************************/
 /********************************************/
 /****** STREAM ******/
-
-std::ostream &operator<<(std::ostream &o, const Intern &infile)
-{
-    o << "";
-    return o;
-}
 
 /********************************************/
 /********************************************/
