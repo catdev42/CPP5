@@ -67,8 +67,6 @@ ${CLASS_NAME}::${CLASS_NAME}(/*PARAM TODO*/)
     return;
 }
 
-
-
 ${CLASS_NAME}::${CLASS_NAME}(${CLASS_NAME} const &src)
 {
     std::cout << GREY << "${CLASS_NAME} copy constructor" << RESET << std::endl;
